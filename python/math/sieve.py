@@ -11,8 +11,9 @@ def sieve(n):
             minp[i * p] = p
     return primes, minp
 
+# leetcode 204. 计数质数
 if __name__ == "__main__":
-    n = int(input("Enter a number: "))
+    n = int(input())
     primes, minp = sieve(n)
-    print("Primes up to", n, ":", primes)
-    print("Minimum prime factor for each number up to", n, ":", minp)
+    print(bisect_left(primes, n))
+    
