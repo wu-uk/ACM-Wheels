@@ -1,0 +1,5 @@
+{
+    "debug.internalConsoleOptions": "neverOpen",
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "C_Cpp.debugging.allowBreakpointsInUnrelatedFiles": true
+}

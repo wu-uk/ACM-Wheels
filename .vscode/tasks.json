@@ -1,0 +1,40 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++ 竞赛模式编译",
+            "command": "C:\\Program Files\\mingw64\\bin\\g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-std=gnu++17",
+                "-O2",
+                "-Wall",
+                "-Wextra",
+                "-Wshadow",
+                "-Wconversion",
+                "-DONLINE_JUDGE",
+                "-DLOCAL",
+                "${file}",
+                "-o",
+                "${workspaceFolder}/cpp/bin/${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",  // 强制显示终端
+                "focus": true,       // 聚焦到终端
+                "panel": "shared", // 使用独立终端（避免被调试控制台抢占）
+                "clear": true,
+                "close": false
+            },
+            "detail": "算法竞赛专用编译配置"
+        }
+    ],
+    "version": "2.0.0"
+}
