@@ -11,8 +11,7 @@ vector<ll> dijkstra(graph &g, ll s) {
     dist[s] = 0;
     pq.emplace(0, s);
     while (!pq.empty()) {
-        auto [d, u] = pq.top();
-        pq.pop();
+        auto [d, u] = pq.top(); pq.pop();
         if (dist[u] < d) continue;
         for (auto [w, v] : g[u]) {
             if (dist[v] > dist[u] + w) {
