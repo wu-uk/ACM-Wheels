@@ -6,7 +6,7 @@ void sieve(int n) {
     minp.assign(n + 1, 0);
     primes.clear();
     for (int i = 2; i <= n; i++) {
-        if (minp[i] == 0) primes.emplace_back(minp[i] = i);
+        if (!minp[i]) primes.emplace_back(minp[i] = i);
         for (auto p : primes) {
             if (i * p > n or p > minp[i]) break;
             minp[i * p] = p;
