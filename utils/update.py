@@ -8,12 +8,9 @@ import re
 # 可配置的需要排除的文件夹或文件名
 EXCLUDE_NAMES = {'.git', 'bin'}
 
-
-def build_tree(dir_path: str, root_dir: str, github_base: str | None, prefix: str = "") -> list[str]:
+def build_list(dir_path: str, root_dir: str, github_base: str, indent: int = 0) -> list[str]:
     """
-    递归生成 dir_path 下的文件/目录树，输出 markdown 格式的链接。
-    跳过以 '.' 开头的隐藏文件/文件夹及 EXCLUDE_NAMES 内的名称。
-    github_base: GitHub 仓库链接根，如 'https://github.com/user/repo', 不含尾部 '/'.
+    递归生成 dir_path 下的文件/目录的 markdown 无序列表，每行以 '-' 开头并缩进。
     """
     try:
         entries = sorted(
@@ -24,58 +21,53 @@ def build_tree(dir_path: str, root_dir: str, github_base: str | None, prefix: st
         return []
 
     lines = []
-    for idx, name in enumerate(entries):
+    for name in entries:
         path = os.path.join(dir_path, name)
         rel_path = os.path.relpath(path, root_dir).replace('\\', '/')
         is_dir = os.path.isdir(path)
-        connector = "└── " if idx == len(entries) - 1 else "├── "
         display = f"{name}/" if is_dir else name
-        if github_base:
-            # 仓库页面链接，目录指向 tree，文件指向 blob
-            kind = 'tree' if is_dir else 'blob'
-            link = f"{github_base}/{kind}/main/{rel_path}"
-        else:
-            # 本地相对链接
-            link = f"./{rel_path}/" if is_dir else f"./{rel_path}"
-        md = f"[{display}]({link})"
-        lines.append(f"{prefix}{connector}{md}")
+        kind = 'tree' if is_dir else 'blob'
+        url = f"{github_base}/{kind}/main/{rel_path}" if github_base else (
+            f"./{rel_path}/" if is_dir else f"./{rel_path}"
+        )
+        lines.append(f"{'  ' * indent}- [{display}]({url})")
         if is_dir:
-            extension = "    " if idx == len(entries) - 1 else "│   "
-            lines.extend(build_tree(path, root_dir, github_base, prefix + extension))
+            lines.extend(build_list(path, root_dir, github_base, indent + 1))
     return lines
 
 
-def generate_structure_block(root_dir: str, github_base: str | None, root_name: str = None) -> str:
+def generate_structure_block(root_dir: str, github_base: str, root_name: str = None) -> str:
     """
-    生成整个项目结构的 markdown 代码块文本（含 ```）。
-    github_base: GitHub 仓库根链接或 None。
+    生成整个项目结构的 markdown 无序列表文本，不含代码块标记。
     """
     if root_name is None:
         root_name = os.path.basename(os.path.abspath(root_dir))
-    header = f"{root_name}/"
-    tree_lines = [header]
-    tree_lines += build_tree(root_dir, root_dir, github_base)
-    return "\n" + "\n".join(tree_lines) + "\n"
+    header = f"- {root_name}/"
+    lines = [header]
+    lines += build_list(root_dir, root_dir, github_base, indent=1)
+    return "\n".join(lines)
 
 
 def replace_structure_in_readme(readme_path: str, new_block: str) -> None:
     """
-    将 README.md 中 “## 项目结构” 下的第一个 ```...``` 区块替换为 new_block。
+    将 README.md 中 “## 项目结构” 小节内的内容替换为 new_block。
+    匹配“## 项目结构”到下一个二级标题之间的所有内容。
     """
     content = open(readme_path, encoding="utf-8").read()
     pattern = re.compile(
-        r"(## 项目结构\s*)(```[\s\S]*?```)",
+        r"(## 项目结构[\s\S]*?)(?=\n## )",
         re.MULTILINE
     )
-    new_content, count = pattern.subn(r"\1" + new_block, content, count=1)
+    replacement = f"## 项目结构\n\n{new_block}\n"
+    new_content, count = pattern.subn(replacement, content, count=1)
     if count == 0:
-        raise RuntimeError("未在 README.md 中找到 '## 项目结构' 及其代码块，请检查文档格式。")
+        raise RuntimeError("未在 README.md 中找到 '## 项目结构' 区块，请检查文档格式。")
     with open(readme_path, "w", encoding="utf-8") as f:
         f.write(new_content)
 
 
 def main():
-    parser = argparse.ArgumentParser(description="自动更新 README.md 中的项目结构目录树，支持 GitHub 链接格式")
+    parser = argparse.ArgumentParser(description="自动更新 README.md 中的项目结构目录树，Markdown 无序列表格式")
     parser.add_argument(
         "--root", "-r", default=".",
         help="项目根目录路径，默认为当前目录"
@@ -85,8 +77,9 @@ def main():
         help="README 文件路径，默认为当前目录下的 README.md"
     )
     parser.add_argument(
-        "--github-base", "-g", default="https://github.com/wu-uk/ACM-Wheels/tree/main",
-        help="GitHub 仓库链接根，如 'https://github.com/user/repo'，不含尾部 '/'，提供后生成在线 URL"
+        "--github-base", "-g",
+        default="https://github.com/wu-uk/ACM-Wheels/blob/main",
+        help="GitHub 仓库链接根，默认为 https://github.com/wu-uk/ACM-Wheels/blob/main"
     )
     args = parser.parse_args()
 
