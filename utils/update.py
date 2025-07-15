@@ -55,7 +55,7 @@ def generate_structure_block(root_dir: str, github_base: str | None, root_name: 
     header = f"{root_name}/"
     tree_lines = [header]
     tree_lines += build_tree(root_dir, root_dir, github_base)
-    return "```\n" + "\n".join(tree_lines) + "\n```"
+    return "\n" + "\n".join(tree_lines) + "\n"
 
 
 def replace_structure_in_readme(readme_path: str, new_block: str) -> None:
