@@ -12,7 +12,6 @@
 
 ## 项目结构
 
-```
 acm-wheels/
 ├── [LICENSE](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/LICENSE)
 ├── [README.md](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/README.md)
@@ -56,7 +55,7 @@ acm-wheels/
 └── [utils/](https://github.com/wu-uk/ACM-Wheels/tree/main/tree/main/utils)
     ├── [snippet.py](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/utils/snippet.py)
     └── [update.py](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/utils/update.py)
-```
+
         
 # 项目说明
 
