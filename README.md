@@ -14,36 +14,48 @@
 
 ```
 acm-wheels/
-├── cpp/                # C++实现
-│   ├── dataStructure/  # 数据结构
-│   │   ├── dsu.cpp     # 并查集
-│   │   ├── lazySegtree.cpp  # 线段树
-│   │   └── sparseTable.cpp  # ST表
-│   ├── graph/          # 图论算法
-│   │   ├── dijkstra.cpp      # Dijkstra算法
-│   │   └── heavyLinkDivision.cpp  # 树链剖分
-│   ├── math/           # 数学工具
-│   │   ├── Matrix.cpp  # 矩阵运算
-│   │   └── sieve.cpp   # 线性筛
-│   └── others/         # 其他工具
-│       └── int128.cpp  # 大整数运算
-├── python/             # Python实现
-│   ├── dataStructure/
-│   │   ├── dsu.py      # 并查集
-│   │   ├── fenwick.py  # 树状数组
-│   │   └── trie.py     # 字典树
-│   ├── graph/
-│   │   ├── dijkstra.py      # Dijkstra算法
-│   │   └── heavySplit.py    # 树链剖分
-│   ├── math/
-│   │   ├── fft.py      # 快速傅里叶变换
-│   │   └── sieve.py    # 素数筛
-│   └── string/
-│       └── kmp.py      # KMP算法
-├── utils/              # 实用工具
-│   └── snippet.py      # 代码片段生成器
-├── LICENSE             # 开源协议
-└── README.md           # 项目说明
+├── [LICENSE](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/LICENSE)
+├── [README.md](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/README.md)
+├── [cpp/](https://github.com/wu-uk/ACM-Wheels/tree/main/tree/main/cpp)
+│   ├── [dataStructure/](https://github.com/wu-uk/ACM-Wheels/tree/main/tree/main/cpp/dataStructure)
+│   │   ├── [dsu.cpp](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/cpp/dataStructure/dsu.cpp)
+│   │   ├── [lazySegtree.cpp](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/cpp/dataStructure/lazySegtree.cpp)
+│   │   └── [sparseTable.cpp](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/cpp/dataStructure/sparseTable.cpp)
+│   ├── [geometry/](https://github.com/wu-uk/ACM-Wheels/tree/main/tree/main/cpp/geometry)
+│   │   └── [simple.cpp](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/cpp/geometry/simple.cpp)
+│   ├── [graph/](https://github.com/wu-uk/ACM-Wheels/tree/main/tree/main/cpp/graph)
+│   │   ├── [dijkstra.cpp](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/cpp/graph/dijkstra.cpp)
+│   │   ├── [heavyLinkDivision.cpp](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/cpp/graph/heavyLinkDivision.cpp)
+│   │   └── [topoSort.cpp](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/cpp/graph/topoSort.cpp)
+│   ├── [math/](https://github.com/wu-uk/ACM-Wheels/tree/main/tree/main/cpp/math)
+│   │   ├── [Matrix.cpp](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/cpp/math/Matrix.cpp)
+│   │   └── [sieve.cpp](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/cpp/math/sieve.cpp)
+│   ├── [others/](https://github.com/wu-uk/ACM-Wheels/tree/main/tree/main/cpp/others)
+│   │   ├── [int128.cpp](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/cpp/others/int128.cpp)
+│   │   └── [mint.cpp](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/cpp/others/mint.cpp)
+│   └── [string/](https://github.com/wu-uk/ACM-Wheels/tree/main/tree/main/cpp/string)
+│       └── [manacher.cpp](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/cpp/string/manacher.cpp)
+├── [python/](https://github.com/wu-uk/ACM-Wheels/tree/main/tree/main/python)
+│   ├── [dataStructure/](https://github.com/wu-uk/ACM-Wheels/tree/main/tree/main/python/dataStructure)
+│   │   ├── [dsu.py](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/python/dataStructure/dsu.py)
+│   │   ├── [fenwick.py](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/python/dataStructure/fenwick.py)
+│   │   ├── [monoQueue.py](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/python/dataStructure/monoQueue.py)
+│   │   ├── [monoStack.py](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/python/dataStructure/monoStack.py)
+│   │   ├── [sparseTable.py](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/python/dataStructure/sparseTable.py)
+│   │   └── [trie.py](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/python/dataStructure/trie.py)
+│   ├── [graph/](https://github.com/wu-uk/ACM-Wheels/tree/main/tree/main/python/graph)
+│   │   ├── [dijkstra.py](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/python/graph/dijkstra.py)
+│   │   ├── [heavySplit.py](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/python/graph/heavySplit.py)
+│   │   └── [toposort.py](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/python/graph/toposort.py)
+│   ├── [math/](https://github.com/wu-uk/ACM-Wheels/tree/main/tree/main/python/math)
+│   │   ├── [discretisize.py](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/python/math/discretisize.py)
+│   │   ├── [fft.py](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/python/math/fft.py)
+│   │   └── [sieve.py](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/python/math/sieve.py)
+│   └── [string/](https://github.com/wu-uk/ACM-Wheels/tree/main/tree/main/python/string)
+│       └── [kmp.py](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/python/string/kmp.py)
+└── [utils/](https://github.com/wu-uk/ACM-Wheels/tree/main/tree/main/utils)
+    ├── [snippet.py](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/utils/snippet.py)
+    └── [update.py](https://github.com/wu-uk/ACM-Wheels/tree/main/blob/main/utils/update.py)
 ```
         
 # 项目说明
